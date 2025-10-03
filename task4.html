@@ -1,0 +1,99 @@
+<style>
+body {
+  background: #f4f6fb;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form-container {
+  background: #e7e5eb;
+  padding: 2.5rem 2rem 2rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(3448, 254, 255, 0.873);
+  min-width: 320px;
+  max-width: 350px;
+  width: 100%;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: #222b45;
+}
+input[type="email"] {
+  padding: 0.7rem 1rem;
+  border: 1px solid #cfd8dc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border 0.2s;
+}
+input[type="email"]:focus {
+  border: 1.5px solid #a30736;
+  outline: none;
+}
+button[type="submit"] {
+  background: linear-gradient(90deg, #007acc 60%, #005f99 100%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.8rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(160, 22, 22, 0.04);
+  transition: background 0.2s;
+}
+button[type="submit"]:hover {
+  background: linear-gradient(90deg, #005f99 60%, #007acc 100%);
+}
+#emailError {
+  color: #e53935;
+  font-size: 0.97rem;
+  min-height: 1.2em;
+  margin-top: -0.7rem;
+  margin-bottom: -0.7rem;
+  display: block;
+}
+@media (max-width: 500px) {
+  .form-container {
+    padding: 1.2rem 0.5rem 1rem 0.5rem;
+    min-width: unset;
+    max-width: 98vw;
+  }
+}
+</style>
+
+<div class="form-container">
+  <form id="registrationForm">
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="Enter your email" required>
+    <span id="emailError"></span>
+    <button type="submit">Register</button>
+  </form>
+</div>
+
+<script>
+document.getElementById('registrationForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const emailInput = document.getElementById('email');
+  const emailError = document.getElementById('emailError');
+  const emailValue = emailInput.value.trim();
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(emailValue)) {
+    emailError.textContent = "Please enter a valid email address.";
+    emailInput.focus();
+  } else {
+    emailError.textContent = "";
+    alert("Registration successful!");
+    // e.target.submit();
+  }
+});
+</script>
